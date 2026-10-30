@@ -23,6 +23,11 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 PYTHONPATH=src python -m pytest -q tests
+
+# Smart contract tests on a local Hardhat chain
+npm install
+python scripts/make_vectors.py   # regenerate Python-computed test vectors
+npx hardhat test
 ```
 
 ---
@@ -37,6 +42,7 @@ PYTHONPATH=src python -m pytest -q tests
 | `docs/thesis` | Long-form writing |
 | `docs/notes` | Working notes and backlogs |
 | `contracts` | Solidity smart contracts |
+| `chain-tests` | Hardhat tests for the contracts |
 | `research/experiments` | Run logs and metrics |
 | `research/data` | Raw / processed data (local dumps gitignored) |
 | `src/core` | Hashing and serialisation primitives |
@@ -51,4 +57,4 @@ PYTHONPATH=src python -m pytest -q tests
 
 ## Status
 
-**Phase:** Month 1 — hash chain, Merkle tree and anchor contract draft.
+**Phase:** Month 1 — hash chain, Merkle tree and anchor contract, tested in Python and on a local chain.

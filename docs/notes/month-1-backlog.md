@@ -10,12 +10,12 @@
 ## Week 2
 - [ ] Literature notes: audit logs, Merkle trees / transparency logs, blockchain anchoring, LLM agent logging
 - [ ] Draft base paper choice and IEEE abstract
-- [ ] Install Hardhat and confirm it works on the installed Node version
+- [x] Install Hardhat (2.29.1) and confirm it works on Node v26.5.0
 - [x] Contract draft `contracts/AuditAnchor.sol` compiles with solc 0.8.28
-- [ ] Run contract tests on a local chain (Hardhat) and check Python vs Solidity hashes match
+- [x] Contract tests on a local chain (13 passing); Python-computed Merkle proofs verify on-chain for trees of 1–100 entries
 
 ## Week 3
-- [ ] Shared test vectors so Python and Solidity hashing agree
+- [x] Shared test vectors (`scripts/make_vectors.py` -> `tests/vectors/audit_vectors.json`)
 - [ ] Anchor a batch root to the local chain from Python
 - [ ] Experiment config format (JSON)
 
