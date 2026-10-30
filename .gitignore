@@ -1,0 +1,47 @@
+# Dependencies & tooling
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+.DS_Store
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Research data (keep structure; ignore large local dumps)
+research/data/raw/*
+!research/data/raw/.gitkeep
+research/data/processed/*
+!research/data/processed/.gitkeep
+
+# OS / junk
+Thumbs.db
+*.log
+.coverage
+htmlcov/
+
+# Copyrighted books (kept locally, not pushed)
+docs/notes/320.pdf
+docs/notes/990074979-*.pdf
+docs/notes/file_5e748501c810d.pdf
+docs/notes/quantum-computation-and-quantum-information-nielsen-chuang.pdf
+
+# Blockchain tooling
+node_modules/
+artifacts/
+cache/
+typechain-types/
