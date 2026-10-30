@@ -8,14 +8,10 @@ from __future__ import annotations
 import json
 from typing import Any, Mapping, Sequence
 
-from domain.agent import DEFAULT_TOOL_SPECS, Action, LLM, Message
+from domain.agent import DEFAULT_SYSTEM_PROMPT, DEFAULT_TOOL_SPECS, Action, LLM, Message
 
 DEFAULT_MODEL = "claude-opus-5-5"
-SYSTEM_PROMPT = (
-    "You are a careful assistant with three tools: calculator, word_count and lookup_capital. "
-    "Use a tool for any arithmetic, word counting or capital-city lookup instead of answering from memory. "
-    "Call one tool at a time. When all needed results are in, reply with a short final answer."
-)
+SYSTEM_PROMPT = DEFAULT_SYSTEM_PROMPT
 
 
 def _stringify(result: Any) -> str:

@@ -33,7 +33,12 @@ npx hardhat test
 npx hardhat compile
 python scripts/run_demo.py                      # scripted stand-in LLM, runs offline
 
-# Same demo with a real LLM (Claude); the key is read from the environment
+# Same demo with a real local LLM (no API key): install Ollama, then
+brew install ollama && ollama serve &   # or: brew services start ollama
+ollama pull qwen3:8b
+python scripts/run_demo.py --llm ollama
+
+# Or with Claude; the key is read from the environment
 export ANTHROPIC_API_KEY=...
 python scripts/run_demo.py --llm anthropic
 ```
@@ -65,4 +70,4 @@ python scripts/run_demo.py --llm anthropic
 
 ## Status
 
-**Phase:** Month 1–2 — working pipeline: demo agent, audit log, anchoring on a local chain, verifier. LLM is a scripted stand-in by default; `--llm anthropic` uses Claude.
+**Phase:** Month 1–2 — working pipeline: demo agent, audit log, anchoring on a local chain, verifier. LLM is a scripted stand-in by default; `--llm ollama` uses a local model, `--llm anthropic` uses Claude.

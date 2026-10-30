@@ -60,6 +60,12 @@ DEFAULT_TOOLS: Mapping[str, Tool] = {
 }
 
 
+DEFAULT_SYSTEM_PROMPT = (
+    "You are a careful assistant with three tools: calculator, word_count and lookup_capital. "
+    "Use a tool for any arithmetic, word counting or capital-city lookup instead of answering from memory. "
+    "Call one tool at a time. When all needed results are in, reply with a short final answer."
+)
+
 DEFAULT_TOOL_SPECS: tuple[Mapping[str, Any], ...] = (
     {
         "name": "calculator",

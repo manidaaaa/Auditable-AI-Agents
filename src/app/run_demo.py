@@ -30,6 +30,10 @@ def show(label: str, report) -> None:
 def pick_llm(name: str):
     if name == "scripted":
         return scripted_llm
+    if name == "ollama":
+        from app.ollama_llm import make_ollama_llm
+
+        return make_ollama_llm()
     if not os.environ.get("ANTHROPIC_API_KEY"):
         sys.exit("ANTHROPIC_API_KEY is not set. Export it, then run again with --llm anthropic.")
     from app.anthropic_llm import make_anthropic_llm
@@ -39,7 +43,7 @@ def pick_llm(name: str):
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--llm", choices=("scripted", "anthropic"), default="scripted")
+    parser.add_argument("--llm", choices=("scripted", "ollama", "anthropic"), default="scripted")
     args = parser.parse_args()
 
     log_path = REPO_ROOT / "research" / "experiments" / "agent_logs" / f"{args.llm}_run.jsonl"

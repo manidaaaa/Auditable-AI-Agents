@@ -31,6 +31,7 @@
 
 ## Next
 - [x] Real LLM client (`src/app/anthropic_llm.py`, Claude via the Anthropic SDK, same `llm(messages) -> action` signature); unit-tested against a fake SDK client
-- [ ] Log a real run: `export ANTHROPIC_API_KEY=...` then `python scripts/run_demo.py --llm anthropic`
+- [x] Local LLM client (`src/app/ollama_llm.py`): Ollama + qwen3:8b, no API key (org setup has none). Real run logged, anchored and verified end to end
+- [ ] Log a Claude run if an API key becomes available: `python scripts/run_demo.py --llm anthropic`
 - [ ] Measure gas vs batch size, per-step logging overhead, verification time at scale
 - [ ] Literature notes and base paper
