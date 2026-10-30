@@ -5,6 +5,7 @@
 **Author:** Manikandan Sankaranarayanan · S Veersamy Chettiya College of Engineering · smak07.s@gmail.com  
 **Working title:** Auditable AI Agents: An Immutable On-Chain Audit Trail for LLM Agent Actions
 
+Documentation index: `docs/README.md` (start with `docs/thesis/technologies.md` and `docs/TESTING.md`; every document also has a PDF).  
 Concepts and plan: `docs/proposal/`. Locked choices: `docs/proposal/decisions.md`.  
 Author profile: `references/personal-info.md`.
 
@@ -22,12 +23,12 @@ An LLM agent's prompts, tool calls and results are logged as hash-chained entrie
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-PYTHONPATH=src python -m pytest -q tests
+python -m pytest -q          # 79 Python tests
 
 # Smart contract tests on a local Hardhat chain
 npm install
 python scripts/make_vectors.py   # regenerate Python-computed test vectors
-npx hardhat test
+npx hardhat test              # 18 contract tests
 
 # End-to-end demo: agent -> audit log -> anchor on a local chain -> tamper -> detect
 npx hardhat compile
@@ -61,7 +62,7 @@ python scripts/run_demo.py --llm anthropic
 | `src/core` | Hashing and serialisation primitives |
 | `src/domain` | Log entries, hash chain, Merkle tree, agent, audit verifier (pure) |
 | `src/app` | Chain client, log storage, demo entrypoint (side effects) |
-| `scripts` | Thin CLI wrappers |
+| `scripts` | Thin CLI wrappers, `verify_log.py` (check a log file), PDF builders |
 | `tests` | Verification |
 | `assets` | Figures and diagrams |
 | `presentations` | Defence decks |

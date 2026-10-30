@@ -35,3 +35,9 @@
 - [ ] Log a Claude run if an API key becomes available: `python scripts/run_demo.py --llm anthropic`
 - [ ] Measure gas vs batch size, per-step logging overhead, verification time at scale
 - [ ] Literature notes and base paper
+
+## Documentation and tests (2026-10-30)
+- [x] Full test suite: 79 Python + 18 contract tests (fuzz tamper tests, vectors, tools, log store, CLI, live Ollama and chain tests)
+- [x] Technology explainer, testing guide, architecture, evaluation plan, literature notes, IEEE and extended abstracts, progress report, each as .md and .pdf
+- [ ] Verify every citation in `docs/literature/audit-trail-notes.md` against the source
+- [ ] Run evaluation experiments 2 to 4 and replace the planned figures

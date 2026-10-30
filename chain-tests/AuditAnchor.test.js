@@ -74,3 +74,51 @@ describe("AuditAnchor", () => {
     });
   });
 });
+
+describe("AuditAnchor: edge cases", () => {
+  let anchor, a, b;
+  beforeEach(async () => {
+    [a, b] = await ethers.getSigners();
+    anchor = await (await ethers.getContractFactory("AuditAnchor")).deploy();
+  });
+
+  it("one agent cannot verify entries against another agent's batches", async () => {
+    const v = vectors.find((x) => x.n === 5);
+    await anchor.connect(a).anchor(b32(v.root), v.n);
+    const siblings = v.proofs[2].map((s) => b32(s.hash));
+    const sides = v.proofs[2].map((s) => s.right);
+    expect(await anchor.verifyInclusion(a.address, 0, b32(v.entry_hashes[2]), siblings, sides)).to.equal(true);
+    await expect(anchor.verifyInclusion(b.address, 0, b32(v.entry_hashes[2]), siblings, sides)).to.be.revertedWith("no such batch");
+  });
+
+  it("two agents can anchor the same root independently", async () => {
+    const root = b32(vectors[2].root);
+    await anchor.connect(a).anchor(root, 3);
+    await anchor.connect(b).anchor(root, 3);
+    expect((await anchor.getBatch(a.address, 0)).firstIndex).to.equal(0);
+    expect((await anchor.getBatch(b.address, 0)).firstIndex).to.equal(0);
+  });
+
+  it("batches are append-only: earlier batches never change", async () => {
+    await anchor.connect(a).anchor(b32(vectors[0].root), 4);
+    const before = await anchor.getBatch(a.address, 0);
+    await anchor.connect(a).anchor(b32(vectors[1].root), 4);
+    const after = await anchor.getBatch(a.address, 0);
+    expect(after.root).to.equal(before.root);
+    expect(after.timestamp).to.equal(before.timestamp);
+  });
+
+  it("an all-zero entry hash does not verify against a real batch", async () => {
+    const v = vectors.find((x) => x.n === 8);
+    await anchor.connect(a).anchor(b32(v.root), v.n);
+    const siblings = v.proofs[0].map((s) => b32(s.hash));
+    const sides = v.proofs[0].map((s) => s.right);
+    expect(await anchor.verifyInclusion(a.address, 0, "0x" + "00".repeat(32), siblings, sides)).to.equal(false);
+  });
+
+  it("gas per anchor call stays in the expected range", async () => {
+    const tx = await anchor.connect(a).anchor(b32(vectors[0].root), 5);
+    const receipt = await tx.wait();
+    expect(receipt.gasUsed).to.be.lessThan(120000n);
+  });
+});
