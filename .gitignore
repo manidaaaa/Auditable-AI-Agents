@@ -52,3 +52,6 @@ research/experiments/agent_logs/
 # Personal details (kept locally, not pushed)
 references/personal-info.md
 references/personal_info.properties
+
+# Local tools (moved here so nothing is left outside the project)
+.tools/

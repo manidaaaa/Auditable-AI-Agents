@@ -30,6 +30,7 @@ Author profile for papers and forms: `references/personal-info.md`.
 | notes | [month-1-backlog.md](notes/month-1-backlog.md) | Task list |
 | notes | [progress-report.md](notes/progress-report.md) | Progress and status |
 | notes | [agents-and-skills.md](notes/agents-and-skills.md) | Agents and skills used, and those prepared for reuse |
+| diagrams | [README.md](diagrams/README.md) | 19 UML and flow diagrams (use case, class, sequence, activity, state, deployment, ER) |
 | study | [concepts-study-guide.md](study/concepts-study-guide.md) | Concept study guide |
 | anna-university | [format-guide.md](anna-university/format-guide.md) | Format rules |
 | anna-university | [checklist.md](anna-university/checklist.md) | Submission checklist |

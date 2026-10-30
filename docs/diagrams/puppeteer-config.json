@@ -1,0 +1,4 @@
+{
+  "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "args": ["--no-sandbox", "--user-data-dir=/Users/mani-2209/AuditableAgentsProject/.tools/chrome-profile"]
+}
