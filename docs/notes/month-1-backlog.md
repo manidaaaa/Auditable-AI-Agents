@@ -16,9 +16,20 @@
 
 ## Week 3
 - [x] Shared test vectors (`scripts/make_vectors.py` -> `tests/vectors/audit_vectors.json`)
-- [ ] Anchor a batch root to the local chain from Python
+- [x] Anchor batch roots to the local chain from Python (`src/app/chain_client.py`)
 - [ ] Experiment config format (JSON)
 
 ## Week 4
 - [ ] Month 1 write-up: design and tamper-test results
 - [ ] Advisor/self review of scope
+
+## Done early (Month 2 scope)
+- [x] Demo agent with 3 tools; every step logged (`src/domain/agent.py`). The LLM is a deterministic stand-in (`scripted_llm`); a real LLM client with the same signature is not wired up yet
+- [x] Batch planning + verifier against on-chain roots (`src/domain/audit.py`); catches edit, delete, insert, reorder, truncation and consistent rewrite
+- [x] End-to-end demo: `python scripts/run_demo.py`
+- [x] Live local-chain test (`tests/test_chain_integration.py`); 29 Python + 13 Hardhat tests passing
+
+## Next
+- [ ] Plug in a real LLM client (same `llm(messages) -> action` signature) and log real runs
+- [ ] Measure gas vs batch size, per-step logging overhead, verification time at scale
+- [ ] Literature notes and base paper

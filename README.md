@@ -28,6 +28,10 @@ PYTHONPATH=src python -m pytest -q tests
 npm install
 python scripts/make_vectors.py   # regenerate Python-computed test vectors
 npx hardhat test
+
+# End-to-end demo: agent -> audit log -> anchor on a local chain -> tamper -> detect
+npx hardhat compile
+python scripts/run_demo.py
 ```
 
 ---
@@ -46,8 +50,8 @@ npx hardhat test
 | `research/experiments` | Run logs and metrics |
 | `research/data` | Raw / processed data (local dumps gitignored) |
 | `src/core` | Hashing and serialisation primitives |
-| `src/domain` | Log entries, hash chain, Merkle tree |
-| `src/app` | Runnable entrypoints |
+| `src/domain` | Log entries, hash chain, Merkle tree, agent, audit verifier (pure) |
+| `src/app` | Chain client, log storage, demo entrypoint (side effects) |
 | `scripts` | Thin CLI wrappers |
 | `tests` | Verification |
 | `assets` | Figures and diagrams |
@@ -57,4 +61,4 @@ npx hardhat test
 
 ## Status
 
-**Phase:** Month 1 — hash chain, Merkle tree and anchor contract, tested in Python and on a local chain.
+**Phase:** Month 1–2 — working pipeline: demo agent, audit log, anchoring on a local chain, verifier. LLM is a scripted stand-in for now.
