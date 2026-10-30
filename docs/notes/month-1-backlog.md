@@ -30,6 +30,7 @@
 - [x] Live local-chain test (`tests/test_chain_integration.py`); 29 Python + 13 Hardhat tests passing
 
 ## Next
-- [ ] Plug in a real LLM client (same `llm(messages) -> action` signature) and log real runs
+- [x] Real LLM client (`src/app/anthropic_llm.py`, Claude via the Anthropic SDK, same `llm(messages) -> action` signature); unit-tested against a fake SDK client
+- [ ] Log a real run: `export ANTHROPIC_API_KEY=...` then `python scripts/run_demo.py --llm anthropic`
 - [ ] Measure gas vs batch size, per-step logging overhead, verification time at scale
 - [ ] Literature notes and base paper

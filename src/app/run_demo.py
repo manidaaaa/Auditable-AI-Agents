@@ -1,6 +1,9 @@
 """End-to-end demo: agent -> audit log -> anchor on a local chain -> tamper -> verifier catches it."""
 from __future__ import annotations
 
+import argparse
+import os
+import sys
 import time
 from dataclasses import replace
 from pathlib import Path
@@ -24,9 +27,23 @@ def show(label: str, report) -> None:
         print(f"   first suspicious entry: {report.first_bad_index}")
 
 
+def pick_llm(name: str):
+    if name == "scripted":
+        return scripted_llm
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        sys.exit("ANTHROPIC_API_KEY is not set. Export it, then run again with --llm anthropic.")
+    from app.anthropic_llm import make_anthropic_llm
+
+    return make_anthropic_llm()
+
+
 def main() -> None:
-    log_path = REPO_ROOT / "research" / "experiments" / "agent_logs" / "demo_run.jsonl"
-    answer, log = run_agent(TASK, scripted_llm, DEFAULT_TOOLS, (), time.time)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--llm", choices=("scripted", "anthropic"), default="scripted")
+    args = parser.parse_args()
+
+    log_path = REPO_ROOT / "research" / "experiments" / "agent_logs" / f"{args.llm}_run.jsonl"
+    answer, log = run_agent(TASK, pick_llm(args.llm), DEFAULT_TOOLS, (), time.time)
     save_log(log, log_path)
     print(f"agent answered: {answer}")
     print(f"{len(log)} audit entries saved to {log_path.relative_to(REPO_ROOT)}")

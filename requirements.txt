@@ -1,2 +1,4 @@
 pytest>=8.0
-# Added later: web3, streamlit, an LLM client (e.g. anthropic), matplotlib
+web3>=7.0
+anthropic>=1.0
+# Added later: streamlit, matplotlib

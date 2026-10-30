@@ -60,6 +60,33 @@ DEFAULT_TOOLS: Mapping[str, Tool] = {
 }
 
 
+DEFAULT_TOOL_SPECS: tuple[Mapping[str, Any], ...] = (
+    {
+        "name": "calculator",
+        "description": "Evaluate an arithmetic expression (+, -, *, /, **, parentheses) and return the number.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"expression": {"type": "string"}},
+            "required": ["expression"],
+        },
+    },
+    {
+        "name": "word_count",
+        "description": "Count the words in a piece of text.",
+        "input_schema": {"type": "object", "properties": {"text": {"type": "string"}}, "required": ["text"]},
+    },
+    {
+        "name": "lookup_capital",
+        "description": "Look up the capital city of a country.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"country": {"type": "string"}},
+            "required": ["country"],
+        },
+    },
+)
+
+
 def plan_from_task(task: str) -> tuple[tuple[str, dict[str, Any]], ...]:
     """Tool calls the stand-in LLM decides on, read from the task text."""
     plan: list[tuple[str, dict[str, Any]]] = []

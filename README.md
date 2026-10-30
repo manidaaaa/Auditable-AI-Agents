@@ -31,7 +31,11 @@ npx hardhat test
 
 # End-to-end demo: agent -> audit log -> anchor on a local chain -> tamper -> detect
 npx hardhat compile
-python scripts/run_demo.py
+python scripts/run_demo.py                      # scripted stand-in LLM, runs offline
+
+# Same demo with a real LLM (Claude); the key is read from the environment
+export ANTHROPIC_API_KEY=...
+python scripts/run_demo.py --llm anthropic
 ```
 
 ---
@@ -61,4 +65,4 @@ python scripts/run_demo.py
 
 ## Status
 
-**Phase:** Month 1–2 — working pipeline: demo agent, audit log, anchoring on a local chain, verifier. LLM is a scripted stand-in for now.
+**Phase:** Month 1–2 — working pipeline: demo agent, audit log, anchoring on a local chain, verifier. LLM is a scripted stand-in by default; `--llm anthropic` uses Claude.
