@@ -41,3 +41,12 @@
 - [x] Technology explainer, testing guide, architecture, evaluation plan, literature notes, IEEE and extended abstracts, progress report, each as .md and .pdf
 - [ ] Verify every citation in `docs/literature/audit-trail-notes.md` against the source
 - [ ] Run evaluation experiments 2 to 4 and replace the planned figures
+
+## Study, Anna University report, agents (2026-10-30)
+- [x] Concept study guide with verified links (`docs/study/`)
+- [x] Anna University format guide, checklist, Phase I report (Word and PDF preview), figures
+- [x] Agents and skills documented and prepared (`.claude/`)
+- [ ] Fill in register number, supervisor, HOD, college address and month in `docs/report/config.json`
+- [ ] Have the Tamil abstract checked by a Tamil speaker
+- [ ] Confirm the format points listed in `docs/anna-university/format-guide.md` section 12 with your coordinator
+- [ ] Run the citation-verifier on the report references

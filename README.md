@@ -66,6 +66,7 @@ python scripts/run_demo.py --llm anthropic
 | `tests` | Verification |
 | `assets` | Figures and diagrams |
 | `presentations` | Defence decks |
+| `.claude` | Project skills and subagents (see `docs/notes/agents-and-skills.md`) |
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Project:** Auditable AI Agents: An Immutable On-Chain Audit Trail for LLM Agent Actions  
 **Author:** Manikandan Sankaranarayanan  
-**Status:** Month 1 first pass. **Citation details below were written from memory and have not been checked against the papers.** Open each source and confirm authors, venue, pages and year before using it in the thesis.
+**Status:** Month 1 first pass. **Verified on 2026-10-30 by opening the source: Crosby and Wallach (title, authors, Rice University, 17 pages), Nakamoto (title, author), Wood Yellow Paper (title, author), Yao et al. ReAct (arXiv 2210.03629), RFC 9162, NIST FIPS 180-4, NIST AI RMF. Not yet verified (written from memory): Merkle 1987, Haber and Stornetta 1991, Schneier and Kelsey 1999 (the page I tried returned 404), and publication venues, pages and years of the verified items.** Open each source and confirm authors, venue, pages and year before using it in the thesis.
 
 ---
 
@@ -33,7 +33,7 @@ What to extract when reading: the history-tree definition, how membership and co
 | Hash-chained secure audit logs | B. Schneier and J. Kelsey, "Secure audit logs to support computer forensics," ACM Trans. Information and System Security, 1999 | The original idea of chaining log entries so that later tampering is detectable; the limits of a chain without an external witness |
 | Merkle trees | R. C. Merkle, "A digital signature based on a conventional encryption function," CRYPTO 1987 | Folding many hashes into one root; inclusion proofs |
 | Timestamping with hash links | S. Haber and W. S. Stornetta, "How to time-stamp a digital document," Journal of Cryptology, 1991 | Linking documents by hash to prove they existed in a given order; ancestor of anchoring |
-| Transparency logs | B. Laurie, A. Langley and E. Kasper, "Certificate Transparency," RFC 6962, 2013 | A production Merkle-tree log with signed tree heads; the source of the leaf and node domain-separation prefixes (0x00 and 0x01) used here |
+| Transparency logs | B. Laurie, A. Langley and E. Kasper, "Certificate Transparency," RFC 6962, 2013 (checked 2026-10-30: obsolete, replaced by RFC 9162, Certificate Transparency Version 2.0; cite RFC 9162) | A production Merkle-tree log with signed tree heads; the 0x00 / 0x01 leaf and node domain-separation prefixes used here follow this design (check the exact wording in RFC 9162) |
 | Blockchain | S. Nakamoto, "Bitcoin: A peer-to-peer electronic cash system," 2008 | Append-only ledger that no single party controls |
 | Smart contracts | G. Wood, "Ethereum: A secure decentralised generalised transaction ledger" (Yellow Paper) | Programs on a ledger; the gas cost model behind the cost measurements |
 | SHA-256 | NIST, FIPS 180-4, Secure Hash Standard | The hash function used in Python and in Solidity |
@@ -62,7 +62,7 @@ It does **not** claim: that the agent's outputs are correct, that a compromised 
 
 | Week | Reading |
 |---|---|
-| 1 | Crosby and Wallach (full paper); RFC 6962 sections 2 and 3 |
+| 1 | Crosby and Wallach (full paper); RFC 9162 Merkle tree sections |
 | 2 | Schneier and Kelsey; Haber and Stornetta |
 | 3 | ReAct; NIST AI RMF sections on accountability |
 | 4 | Two or three recent papers on blockchain-anchored logging and on LLM-agent observability (search needed; none are cited here because none have been verified) |

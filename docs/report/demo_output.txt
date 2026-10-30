@@ -1,0 +1,23 @@
+agent answered: The results are:
+- 12*(3+4) = 84
+- The word count in "auditable agents leave a trail" is 5.
+- The capital of Japan is Tokyo.
+12 audit entries saved to research/experiments/agent_logs/ollama_run.jsonl
+anchored batch 0: entries 0..4, root ef116e522257…, gas 93100
+anchored batch 1: entries 5..9, root 506981b1cf67…, gas 79518
+anchored batch 2: entries 10..11, root 9c03f8fd0a9f…, gas 79518
+
+verify untouched log: INTACT
+verify after editing entry 3: TAMPERING DETECTED
+   - hash chain broken at entry 3: entry content does not match its hash
+   first suspicious entry: 3
+verify after consistent rewrite (only the chain can catch this): TAMPERING DETECTED
+   - batches not matching on-chain roots: [0, 1, 2]
+   - hash chain is self-consistent, so only batch-level location is possible: entries 0..4
+   first suspicious entry: 0
+verify after deleting the last 2 entries: TAMPERING DETECTED
+   - batches not matching on-chain roots: [2]
+   - hash chain is self-consistent, so only batch-level location is possible: entries 10..11
+   - log is shorter than what was anchored (entries removed from the end)
+   first suspicious entry: 10
+verify after restoring the original: INTACT
