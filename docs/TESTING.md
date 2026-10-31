@@ -36,13 +36,14 @@ python -m pytest -q
 npx hardhat test
 ```
 
-Expected: `79 passed` and `18 passing`. Tests marked `live` use real services and **skip themselves** if the service is missing, so a green run without Ollama still passes (with skips reported by `pytest -rs`).
+Expected: `79 passed` and `18 passing`. Three tests are marked `live` (the real local chain, the end-to-end demo, and the real model). They use real services and **skip themselves** if the service is missing, so a green run without Ollama still passes (with skips reported by `pytest -rs`).
 
 Useful variations:
 
 | Goal | Command |
 |---|---|
-| Fast tests only (no chain, no LLM) | `python -m pytest -q -m "not live"` |
+| Offline tests only (no chain, no LLM): 76 tests | `python -m pytest -q -m "not live"` |
+| Live tests only: 3 tests | `python -m pytest -q -m live -rs` |
 | One file | `python -m pytest -q tests/test_audit.py` |
 | One test, verbose | `python -m pytest -v tests/test_audit.py::test_edit_is_detected_and_located` |
 | Show why tests were skipped | `python -m pytest -q -rs` |

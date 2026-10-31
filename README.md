@@ -208,6 +208,7 @@ python -m pytest -q -rs          # -rs prints why each test was skipped
 | `ModuleNotFoundError: No module named 'web3'` (or `pytest`) | The Python environment is not active | `source .venv/bin/activate`, then `pip install -r requirements.txt` |
 | `command not found: npx` or `npm` | Node.js is not installed | Install Node.js from https://nodejs.org, then redo Steps 3 and 4 |
 | Chain tests are skipped, or `artifacts` is missing | The contract is not compiled | `npx hardhat compile` |
+| `npm warn allow-scripts ...` during `npm install` | npm notice about install scripts of some packages | Harmless here: continue with Step 4. If `npx hardhat compile` and the tests work, nothing is wrong. |
 | Compile fails with a download error | The Solidity compiler is downloaded on first use and needs internet | Reconnect and run `npx hardhat compile` again |
 | `hardhat node did not start in time` | A node could not start (Node version problem, or another process) | Run `npx hardhat node` by hand to see the real error. If it complains about the Node version, try a Node LTS release. |
 | Ollama tests skipped, or `Connection refused` on port 11434 | The Ollama server is not running | `ollama serve` in another terminal (or `brew services start ollama`), then re-check `curl http://127.0.0.1:11434/api/tags` |
