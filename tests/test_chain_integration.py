@@ -12,9 +12,10 @@ from app.chain_client import ARTIFACT, anchor_pending, deploy_anchor, local_chai
 from domain.agent import DEFAULT_TOOLS, run_agent, scripted_llm
 from domain.audit import verify_against_chain
 
-pytestmark = pytest.mark.skipif(
-    not (shutil.which("npx") and ARTIFACT.exists()), reason="needs npx and `npx hardhat compile`"
-)
+pytestmark = [
+    pytest.mark.live,
+    pytest.mark.skipif(not (shutil.which("npx") and ARTIFACT.exists()), reason="needs npx and `npx hardhat compile`"),
+]
 
 TASK = "compute 2+2 and count words in 'x y' and capital of France"
 

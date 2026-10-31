@@ -1,0 +1,8 @@
+# Only needed to rebuild figures, PDFs and the Word report (not to run or test the project)
+matplotlib
+fpdf2
+uharfbuzz
+fonttools
+pymupdf
+defusedxml
+lxml
